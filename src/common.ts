@@ -7,8 +7,8 @@ import { assert } from 'console';
     const day = process.argv[2];
     const part = process.argv[3];
 
-    const testInput: string[] = fs.readFileSync(`${day}/input/test.txt`).toString().split("\n");
-    const input: string[] = fs.readFileSync(`${day}/input/input.txt`).toString().split("\n");
+    const testInput: string[] = fs.readFileSync(`src/${day}/input/test.txt`).toString().split("\n");
+    const input: string[] = fs.readFileSync(`src/${day}/input/input.txt`).toString().split("\n");
 
     const dayObject: Day = await createDayClass(day);
 
