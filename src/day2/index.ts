@@ -44,9 +44,30 @@ export const DayClass = {
         Part 2
     */
 
-    part2TestResult: -1,
+    part2TestResult: 900,
     part2: (input: Instruction[]) => {
-        throw "Part 2 not implemented";
+        const result = {
+            depth: 0,
+            distance: 0,
+            aim: 0,
+        }
+
+        _(input).forEach((instruction) => {
+            switch (instruction.direction) {
+                case Direction.forward:
+                    result.distance += instruction.distance;
+                    result.depth += instruction.distance * result.aim;
+                    break;
+                case Direction.up:
+                    result.aim -= instruction.distance;
+                    break;
+                case Direction.down:
+                    result.aim += instruction.distance;
+                    break;
+            }
+        })
+
+        return result.depth * result.distance;
     },
 
 }
