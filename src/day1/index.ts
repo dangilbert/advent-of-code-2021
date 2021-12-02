@@ -2,6 +2,10 @@ import _ from 'lodash';
 
 export const DayClass = {
 
+    mapInput: (input: string[]): number[] => {
+        return input.map((value) => parseInt(value));
+    },
+
     /*
         Part 1
     */

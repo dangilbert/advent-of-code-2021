@@ -2,6 +2,10 @@ import _ from 'lodash';
 
 export const DayClass = {
 
+    mapInput: (input: string[]): any => {
+        throw "Input mapping not implemented";
+    },
+
     /*
         Part 1
     */
