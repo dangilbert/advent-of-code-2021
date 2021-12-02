@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+if [ -z $1 ]
+then
+    echo "Supply day - e.g. 'day1'"
+    exit 1
+fi
+
+echo "Running day $1"
+
+node build/common.js $1 $2

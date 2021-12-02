@@ -1,7 +1,7 @@
 {
-  "name": "day1",
+  "name": "advent_of_code",
   "version": "1.0.0",
-  "description": "Advent of code Day 1",
+  "description": "Advent of code",
   "main": "index.js",
   "author": "Dan Gilbert",
   "license": "MIT",
