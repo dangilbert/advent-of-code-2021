@@ -8,4 +8,4 @@ fi
 
 echo "Running day $1"
 
-node build/common.js $1 $2
+node build/common.js $1 $2 $3
