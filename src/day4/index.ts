@@ -5,6 +5,54 @@ interface Game {
     boards: number[][][];
 }
 
+const winCheck = (bingo: number[][]) => {
+    // check for all values equals to 1 in any horizontal row:
+    let winner;
+    for (var i = 0; i < bingo.length; i++) {
+        winner = true;
+
+        for (var j = 0; j < bingo[i].length; j++) {
+            if (bingo[i][j] != 1) {
+                winner = false;
+                break;
+            }
+        }
+
+        if (winner) {
+            return true;
+        }
+    }
+
+    for (var i = 0; i < bingo.length; i++) {
+        winner = true;
+
+        for (var j = 0; j < bingo[i].length; j++) {
+            if (bingo[j][i] != 1) {
+                winner = false;
+                break;
+            }
+        }
+
+        if (winner) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+const sumBoardUnmatched = (board: number[][], matchers: number[][]): number => {
+    let sum = 0;
+    for (var i = 0; i < board.length; i++) {
+        for (var j = 0; j < board[0].length; j++) {
+            if (matchers[i][j] == 0) {
+                sum += board[i][j];
+            }
+        }
+    }
+    return sum;
+}
+
 export const DayClass = {
 
     mapInput: (input: string[]): Game => {
@@ -39,54 +87,6 @@ export const DayClass = {
 
         const markers = Array.from({ length: input.boards.length }, () => Array.from({ length: boardHeight }, () => Array.from({ length: boardWidth }, () => 0)));
 
-        const winCheck = (bingo: number[][]) => {
-            // check for all values equals to 1 in any horizontal row:
-            let winner;
-            for (var i = 0; i < bingo.length; i++) {
-                winner = true;
-
-                for (var j = 0; j < bingo[i].length; j++) {
-                    if (bingo[i][j] != 1) {
-                        winner = false;
-                        break;
-                    }
-                }
-
-                if (winner) {
-                    return true;
-                }
-            }
-
-            for (var i = 0; i < bingo.length; i++) {
-                winner = true;
-
-                for (var j = 0; j < bingo[i].length; j++) {
-                    if (bingo[j][i] != 1) {
-                        winner = false;
-                        break;
-                    }
-                }
-
-                if (winner) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        const sumBoardUnmatched = (board: number[][], matchers: number[][]): number => {
-            let sum = 0;
-            for (var i = 0; i < board.length; i++) {
-                for (var j = 0; j < board[0].length; j++) {
-                    if (matchers[i][j] == 0) {
-                        sum += board[i][j];
-                    }
-                }
-            }
-            return sum;
-        }
-
-
         for (var i = 0; i < input.inputs.length; i++) {
 
             const currentInput = input.inputs[i];
@@ -103,8 +103,6 @@ export const DayClass = {
                 }
                 if (i >= Math.min(boardWidth, boardHeight)) {
                     if (winCheck(markers[j])) {
-                        // console.log(`Found a winner after ${i} inputs. Current input: ${currentInput}`);
-                        // console.log(markers[j]);
                         return sumBoardUnmatched(currentBoard, markers[j]) * currentInput;
                     }
                 }
@@ -123,54 +121,6 @@ export const DayClass = {
 
         const markers = Array.from({ length: input.boards.length }, () => Array.from({ length: boardHeight }, () => Array.from({ length: boardWidth }, () => 0)));
         const winningBoards: number[] = [];
-
-        const winCheck = (bingo: number[][]) => {
-            // check for all values equals to 1 in any horizontal row:
-            let winner;
-            for (var i = 0; i < bingo.length; i++) {
-                winner = true;
-
-                for (var j = 0; j < bingo[i].length; j++) {
-                    if (bingo[i][j] != 1) {
-                        winner = false;
-                        break;
-                    }
-                }
-
-                if (winner) {
-                    return true;
-                }
-            }
-
-            for (var i = 0; i < bingo.length; i++) {
-                winner = true;
-
-                for (var j = 0; j < bingo[i].length; j++) {
-                    if (bingo[j][i] != 1) {
-                        winner = false;
-                        break;
-                    }
-                }
-
-                if (winner) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        const sumBoardUnmatched = (board: number[][], matchers: number[][]): number => {
-            let sum = 0;
-            for (var i = 0; i < board.length; i++) {
-                for (var j = 0; j < board[0].length; j++) {
-                    if (matchers[i][j] == 0) {
-                        sum += board[i][j];
-                    }
-                }
-            }
-            return sum;
-        }
-
 
         for (var i = 0; i < input.inputs.length; i++) {
 
